@@ -34,7 +34,7 @@ You can find the library on `window.Teardrop`.
 
 We're going to try and get the docs sorted out here.
 
-## v6 FAQ
+## v5 FAQ
 
 ### Why rename and fork teardrop?
 
@@ -66,8 +66,96 @@ One use case was loading data and waiting to render the next screen until the da
 Check out the "Route Config" example.
 `website/examples/RouterConfig.js`
 
+### Example
+
+Right now, because we're lacking pretty documentation, you'll have to use this example and the modules/__tests__ folder to figure out what's going on. Doccos are in progress. :)
+
+#### Server Router example
+```javascript:
+import { ServerRouter, MatchGroup, Match, Miss, Redirect, createServerRenderContext } from 'teardrop';
+
+const location = '/test' // Set this using your server
+const routerContext = createServerRenderContext();
+
+render() {
+  return (
+    <ServerRouter location={URL from server} context={routerContext}>
+    {/* This component will return every time the pattern is matched - anywhere in the app */}
+      <Match
+        exact={true|false}
+        pattern="*"
+        render={({ params, location, pathname, isExact}) => {
+          // params is an object containing params from your pattern
+          // location is the current location object
+          // pathname is the current pathname
+          // isExact is true when the pattern is an "exact" match (ie. "/" === "/")
+          // pattern is also returned in case you want it
+          return <div />
+        }}
+      />
+      <MatchGroup>
+        // Put as many matches in here as you want, it'll only match ONE of them
+        <Match pattern="hi" render={Hi} />
+        <Match pattern="hello" render={Hello} />
+        <Match pattern="hey" render={Hey} />
+      </MatchGroup>
+      { /* Simple redirect component */ }
+      <Match pattern="/old-link" render={() => {
+        <Redirect to="/new-link" />
+        }} />
+      { /* Nothing matched? We produce a Miss */ }
+      <Miss render={ErrorPage} />
+    </ServerRouter>
+    );
+}
+
+```
+
+#### Client Router example
+
+```javascript:
+import { BrowserRouter, MatchGroup, Match, Miss, Redirect, createServerRenderContext } from 'teardrop';
+
+render() {
+  return (
+    <BrowserRouter>
+    {/* This component will return every time the pattern is matched - anywhere in the app */}
+      <Match
+        exact={true|false}
+        pattern="*"
+        render={({ params, location, pathname, isExact}) => {
+          // params is an object containing params from your pattern
+          // location is the current location object
+          // pathname is the current pathname
+          // isExact is true when the pattern is an "exact" match (ie. "/" === "/")
+          // pattern is also returned in case you want it
+          return <div />
+        }}
+      />
+      <MatchGroup>
+        // Put as many matches in here as you want, it'll only match ONE of them
+        <Match pattern="hi" render={Hi} />
+        <Match pattern="hello" render={Hello} />
+        <Match pattern="hey" render={Hey} />
+      </MatchGroup>
+      { /* Simple redirect component */ }
+      <Match pattern="/old-link" render={() => {
+        <Redirect to="/new-link" />
+        }} />
+      { /* Nothing matched? We produce a Miss */ }
+      <Miss render={ErrorPage} />
+    </BrowserRouter>
+    );
+}
+
+```
+
 ### Changelog
 
 **5.0.1**
 
  - Now sending `router` and `location` props to the Router's only child.
+
+ **5.0.2**
+
+ - Exporting `MatchGroup` for ease of use.
