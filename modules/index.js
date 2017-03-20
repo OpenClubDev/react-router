@@ -3,6 +3,7 @@ export Match from './Match'
 export Miss from './Miss'
 export NavigationPrompt from './NavigationPrompt'
 export Redirect from './Redirect'
+export MatchGroup from './MatchGroup'
 
 // High-level wrappers
 export BrowserRouter from './BrowserRouter'

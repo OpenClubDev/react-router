@@ -1,7 +1,7 @@
 'use strict';
 
 exports.__esModule = true;
-exports.propTypes = exports.createServerRenderContext = exports.matchPattern = exports.StaticRouter = exports.ServerRouter = exports.MemoryRouter = exports.HashRouter = exports.BrowserRouter = exports.Redirect = exports.NavigationPrompt = exports.Miss = exports.Match = exports.Link = undefined;
+exports.propTypes = exports.createServerRenderContext = exports.matchPattern = exports.StaticRouter = exports.ServerRouter = exports.MemoryRouter = exports.HashRouter = exports.BrowserRouter = exports.MatchGroup = exports.Redirect = exports.NavigationPrompt = exports.Miss = exports.Match = exports.Link = undefined;
 
 var _Link2 = require('./Link');
 
@@ -22,6 +22,10 @@ var _NavigationPrompt3 = _interopRequireDefault(_NavigationPrompt2);
 var _Redirect2 = require('./Redirect');
 
 var _Redirect3 = _interopRequireDefault(_Redirect2);
+
+var _MatchGroup2 = require('./MatchGroup');
+
+var _MatchGroup3 = _interopRequireDefault(_MatchGroup2);
 
 var _BrowserRouter2 = require('./BrowserRouter');
 
@@ -64,6 +68,7 @@ exports.Match = _Match3.default;
 exports.Miss = _Miss3.default;
 exports.NavigationPrompt = _NavigationPrompt3.default;
 exports.Redirect = _Redirect3.default;
+exports.MatchGroup = _MatchGroup3.default;
 
 // High-level wrappers
 

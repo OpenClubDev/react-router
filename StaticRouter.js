@@ -107,7 +107,9 @@ var StaticRouter = function (_React$Component) {
       _react2.default.createElement(
         _MatchProvider2.default,
         null,
-        typeof children === 'function' ? children({ action: action, location: location, router: this.getRouterContext() }) : _react2.default.Children.only(children)
+        typeof children === 'function' ? children({ action: action, location: location, router: this.getRouterContext() }) : _react2.default.Children.only(_react2.default.cloneElement(children, {
+          location: location, router: this.getRouterContext()
+        }))
       )
     );
   };
