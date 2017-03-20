@@ -99,7 +99,7 @@ class StaticRouter extends React.Component {
             children({ action, location, router: this.getRouterContext() })
           ) : (
             React.Children.only(React.cloneElement(children, {
-              location, router
+              location, router: this.getRouterContext()
             }))
           )}
         </MatchProvider>
